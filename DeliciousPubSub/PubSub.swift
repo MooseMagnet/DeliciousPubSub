@@ -37,12 +37,21 @@ public class PubSub {
         if (handlers[typeName] == nil) {
             handlers[typeName] = ArrayReference<Handler>(array: [])
         }
-        
-        let handler = Handler(handlingFunction: { (any: Any) in fn(any as! T) })
+        var unsubbed = false
+        let handler = Handler(handlingFunction: { (any: Any) in
+            if (unsubbed) {
+                return
+            }
+            fn(any as! T)
+        })
         handlers[typeName]!.append(handler)
         
         return {
+            if (unsubbed) {
+                return
+            }
             self.handlers[typeName]!.remove(handler)
+            unsubbed = true
         }
     }
     

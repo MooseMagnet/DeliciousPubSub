@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		163ECE631C955AB400E72618 /* DeliciousPubSubWithManualDispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECE621C955AB400E72618 /* DeliciousPubSubWithManualDispatch.swift */; };
 		163ECE651C955F0900E72618 /* DeliciousPubSubsHaveTheirOwnScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163ECE641C955F0900E72618 /* DeliciousPubSubsHaveTheirOwnScope.swift */; };
+		166C612E1C9D680A00140440 /* SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166C612D1C9D680A00140440 /* SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift */; };
 		167E05EF1C95839400EE96CE /* Performance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167E05EE1C95839400EE96CE /* Performance.swift */; };
 		1683C0C41C94D03A00D5147E /* PubSub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683C0C31C94D03A00D5147E /* PubSub.swift */; };
 		1683C0C71C94D0CB00D5147E /* Gross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1683C0C61C94D0CB00D5147E /* Gross.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		163ECE621C955AB400E72618 /* DeliciousPubSubWithManualDispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliciousPubSubWithManualDispatch.swift; sourceTree = "<group>"; };
 		163ECE641C955F0900E72618 /* DeliciousPubSubsHaveTheirOwnScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliciousPubSubsHaveTheirOwnScope.swift; sourceTree = "<group>"; };
+		166C612D1C9D680A00140440 /* SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift; sourceTree = "<group>"; };
 		167E05EE1C95839400EE96CE /* Performance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Performance.swift; sourceTree = "<group>"; };
 		1683C0C31C94D03A00D5147E /* PubSub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PubSub.swift; sourceTree = "<group>"; };
 		1683C0C61C94D0CB00D5147E /* Gross.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gross.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				168AB1861C94CFB900D0978C /* Info.plist */,
 				163ECE641C955F0900E72618 /* DeliciousPubSubsHaveTheirOwnScope.swift */,
 				167E05EE1C95839400EE96CE /* Performance.swift */,
+				166C612D1C9D680A00140440 /* SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift */,
 			);
 			path = DeliciousPubSubTests;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				163ECE651C955F0900E72618 /* DeliciousPubSubsHaveTheirOwnScope.swift in Sources */,
+				166C612E1C9D680A00140440 /* SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift in Sources */,
 				167E05EF1C95839400EE96CE /* Performance.swift in Sources */,
 				163ECE631C955AB400E72618 /* DeliciousPubSubWithManualDispatch.swift in Sources */,
 				168AB1851C94CFB900D0978C /* DeliciousPubSubTests.swift in Sources */,

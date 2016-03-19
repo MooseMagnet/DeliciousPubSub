@@ -27,11 +27,13 @@ class ArrayReference<T: AnyObject> {
     }
     
     func remove(element: T) {
-        _array.removeAtIndex(
-            _array.indexOf({ (thisElement) -> Bool in
-                return thisElement === element
-            })!
-        )
+        let index = _array.indexOf({ (thisElement) -> Bool in
+            return thisElement === element
+        })
+        guard index != nil else {
+            return
+        }
+        _array.removeAtIndex(index!)
     }
 }
 
