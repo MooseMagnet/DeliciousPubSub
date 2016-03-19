@@ -178,9 +178,9 @@ pubSub2.pub(2)
 
 Here are some stats of handling one message type with handlers that do nothing when invoked (i.e. empty function bodies).
 
-10,000 messages each dispatched to 1000 subscribers: ~7.933 seconds
-10,000 messages each dispatched to 100 subscribers: ~1.155 seconds
-100 messages each dispatched to 100 subscribers: ~0.011 seconds
+10,000 messages each dispatched to 1000 subscribers: ~7.933 seconds  
+10,000 messages each dispatched to 100 subscribers: ~1.155 seconds  
+100 messages each dispatched to 100 subscribers: ~0.011 seconds  
 100 messages each dispatched to 10 subscribers: ~0.002 seconds
 
 You can use GCD in your handlers if you have long-running or latent operations executing in them. The act of dispatching via GCD incurs it's own overhead.
