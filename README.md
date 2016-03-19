@@ -185,6 +185,33 @@ Here are some stats of handling one message type with handlers that do nothing w
 
 You can use GCD in your handlers if you have long-running or latent operations executing in them. The act of dispatching via GCD incurs it's own overhead.
 
+### Sub overloads and type inference.
+
+You'll notice there is an overload for each function to add a subscriber with a `type: T.Type` param.
+
+It's is there purely for stylistic purposes. With Swift's type inference it's entirely unnecessary in every case, but everyone has their opinion about what does/n't look nice, so, uhh... do whatever you want.
+
+```swift
+let pubSub = PubSub()
+
+let _ = pubSub.sub(String.self) {
+		print($0)
+}
+
+let _ = pubSub.sub { (string: String) in
+		print(string)
+}
+
+let _ = pubSub.sub(
+		String.self,
+		predicate: { $0.hasPrefix("A") },
+		fn: { print($0) })
+
+let _ = pubSub.sub(
+		predicate: { (string: String) in string.hasPrefix("A") },
+		fn: { print($0) })
+```
+
 ### Some notes about unsubscribing
 
 I didn't know where to put this so here it is, at the end.
