@@ -16,14 +16,12 @@ There are several ways to enlist subscribers (when I'm done writing this there w
 There's only one way to publish a message.
 Use `pub(message: Any)`.
 
-There's another public function, `dispatchMessages`, which will be explained below...
+There's another public function, `dispatchMessages()`, which will be explained later...
 
 When a PubSub object is deinitialized, all of it's handlers are removed.
+This releases references to the closures and any enclosed
 
 ## Usage
-
-Here's how 2 PubSub, you nub.
-Just kidding. I'm the nub.
 
 ### Subscribe to messages as classes
 
