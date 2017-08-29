@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PubSub {
+open class PubSub {
     
     private var handlers: [String: ArrayReference<Handler>] = [:]
     internal let dispatchImmediately: Bool
@@ -32,8 +32,8 @@ public class PubSub {
     // MARK: Sub.
     //
     
-    public func sub<T: Any>(fn: T -> Void) -> Void -> Void {
-        let typeName = String(T)
+    open func sub<T: Any>(_ fn: @escaping (T) -> Void) -> (Void) -> Void {
+        let typeName = String(describing: T.self)
         if (handlers[typeName] == nil) {
             handlers[typeName] = ArrayReference<Handler>(array: [])
         }
@@ -55,12 +55,12 @@ public class PubSub {
         }
     }
     
-    public func sub<T: Any>(type: T.Type, fn: T -> Void) -> Void -> Void {
+    open func sub<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> (Void) -> Void {
         return sub(fn)
     }
     
-    public func sub<T: Any>(predicate predicate: T -> Bool, fn: T -> Void) -> Void -> Void {
-        let predicatedFn: T -> Void = {
+    open func sub<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
+        let predicatedFn: (T) -> Void = {
             if predicate($0) {
                 fn($0)
             }
@@ -68,7 +68,7 @@ public class PubSub {
         return sub(predicatedFn)
     }
     
-    public func sub<T: Any>(type: T.Type, predicate: T -> Bool, fn: T -> Void) -> Void -> Void {
+    open func sub<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
         return sub(predicate: predicate, fn: fn)
     }
     
@@ -78,11 +78,11 @@ public class PubSub {
     // MARK: Sub Once.
     //
     
-    public func subOnce<T: Any>(fn: T -> Void) -> Void -> Void {
-        var unsub: Void -> Void = {
+    open func subOnce<T: Any>(_ fn: @escaping (T) -> Void) -> (Void) -> Void {
+        var unsub: (Void) -> Void = {
             fatalError("unsub should be re-assigned to the unsub function.")
         }
-        let unsubbingFn: T -> Void = {
+        let unsubbingFn: (T) -> Void = {
             fn($0)
             unsub()
         }
@@ -90,15 +90,15 @@ public class PubSub {
         return unsub
     }
     
-    public func subOnce<T: Any>(type: T.Type, fn: T -> Void) -> Void -> Void {
+    open func subOnce<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> (Void) -> Void {
         return subOnce(fn)
     }
     
-    public func subOnce<T: Any>(predicate predicate: T -> Bool, fn: T -> Void) -> Void -> Void {
-        var unsub: Void -> Void = {
+    open func subOnce<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
+        var unsub: (Void) -> Void = {
             fatalError("unsub should be re-assigned to the unsub function.")
         }
-        let unsubbingFn: T -> Void = {
+        let unsubbingFn: (T) -> Void = {
             fn($0)
             unsub()
         }
@@ -106,7 +106,7 @@ public class PubSub {
         return unsub
     }
     
-    public func subOnce<T: Any>(type: T.Type, predicate: T -> Bool, fn: T -> Void) -> Void -> Void {
+    open func subOnce<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
         return subOnce(predicate: predicate, fn: fn)
     }
     
@@ -116,7 +116,7 @@ public class PubSub {
     // MARK: Pub and Dispatch.
     //
     
-    public func pub(message: Any) {
+    open func pub(_ message: Any) {
         if (dispatchImmediately) {
             dispatchMessageOfType(getTypeNameOf(message), message: message)
         } else {
@@ -124,7 +124,7 @@ public class PubSub {
         }
     }
     
-    public func dispatchMessages() {
+    open func dispatchMessages() {
         while (unhandledMessages.count > 0) {
             let message = unhandledMessages.removeFirst()
             dispatchMessageOfType(
@@ -133,17 +133,17 @@ public class PubSub {
         }
     }
     
-    private func getTypeNameOf(object: Any) -> String {
-        return String(Mirror(reflecting: object).subjectType)
+    fileprivate func getTypeNameOf(_ object: Any) -> String {
+        return String(describing: Mirror(reflecting: object).subjectType)
     }
     
-    private func dispatchMessageOfType(typeName: String, message: Any) {
+    fileprivate func dispatchMessageOfType(_ typeName: String, message: Any) {
         
         guard let typeHandlers = handlers[typeName] else {
             return
         }
         
-        for (_, handler) in typeHandlers.array.enumerate() {
+        for (_, handler) in typeHandlers.array.enumerated() {
             handler.handle(message)
         }
     }

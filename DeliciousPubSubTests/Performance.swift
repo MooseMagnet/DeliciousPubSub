@@ -16,7 +16,7 @@ class Performance: XCTestCase {
         let _ = pubSub.sub { (_: TestMessage) in }
         let testMessage = TestMessage(value: 1)
         
-        measureBlock {
+        measure {
             for _ in 0..<10000 {
                 pubSub.pub(testMessage)
             }
@@ -29,7 +29,7 @@ class Performance: XCTestCase {
         let _ = pubSub.sub { (_: TestMessage) in }
         let testMessage = TestMessage(value: 1)
 
-        measureBlock { 
+        measure { 
             for _ in 0..<10000 {
                 pubSub.pub(testMessage)
             }
@@ -39,7 +39,7 @@ class Performance: XCTestCase {
     func testSubPerformance() {
         let pubSub = PubSub()
         
-        measureBlock { 
+        measure { 
             for _ in 0..<10000 {
                 let _ = pubSub.sub { (_: TestMessage) in }
             }
@@ -57,7 +57,7 @@ class Performance: XCTestCase {
                                fn: { _ in })
         }
         
-        measureBlock {
+        measure {
             for _ in 0..<1000 {
                 pubSub.pub(testMessage)
             }
@@ -75,7 +75,7 @@ class Performance: XCTestCase {
                                fn: { _ in })
         }
         
-        measureBlock {
+        measure {
             for _ in 0..<1000 {
                 pubSub.pub(testMessage)
             }
@@ -94,7 +94,7 @@ class Performance: XCTestCase {
                                fn: { _ in })
         }
         
-        measureBlock {
+        measure {
             for i in 0..<1000 {
                 pubSub.pub(TestMessage(value: i))
             }

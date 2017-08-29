@@ -29,7 +29,7 @@ class SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks : XCTestCase {
         var invokedPrecedingHandler = false
         var invokedCancelledHandler = false
         
-        var unsub: (Void -> Void)!
+        var unsub: ((Void) -> Void)!
         
         let _ = pubSub.sub { (_: Int) in
             invokedPrecedingHandler = true
