@@ -22,30 +22,30 @@ class ArrayReference<T: AnyObject> {
         _array = array
     }
     
-    func append(element: T) {
+    func append(_ element: T) {
         _array.append(element)
     }
     
-    func remove(element: T) {
-        let index = _array.indexOf({ (thisElement) -> Bool in
+    func remove(_ element: T) {
+        let index = _array.index(where: { (thisElement) -> Bool in
             return thisElement === element
         })
         guard index != nil else {
             return
         }
-        _array.removeAtIndex(index!)
+        _array.remove(at: index!)
     }
 }
 
 class Handler {
     
-    let _function: Any -> Void
+    let _function: (Any) -> Void
     
-    init(handlingFunction: Any -> Void) {
+    init(handlingFunction: @escaping (Any) -> Void) {
         _function = handlingFunction
     }
     
-    func handle(argument: Any) {
+    func handle(_ argument: Any) {
         _function(argument)
     }
 }
