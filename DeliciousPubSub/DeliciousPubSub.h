@@ -2,9 +2,6 @@
 //  DeliciousPubSub.h
 //  DeliciousPubSub
 //
-//  Created by Skylark on 13/03/2016.
-//  Copyright © 2016 DevSword. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 

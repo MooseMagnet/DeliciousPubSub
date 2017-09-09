@@ -2,9 +2,6 @@
 //  SubscriptionsCanBeCancelledInsideOfSubscriptionCallbacks.swift
 //  DeliciousPubSub
 //
-//  Created by Skylark on 19/03/2016.
-//  Copyright © 2016 DevSword. All rights reserved.
-//
 
 import XCTest
 @testable import DeliciousPubSub
