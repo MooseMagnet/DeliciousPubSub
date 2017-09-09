@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "DeliciousPubSub"
-  spec.version = "1.0.1"
+  spec.version = "1.1.0"
   spec.summary = "Swift PubSub, strongly typed. Delicious. Nutritious."
   spec.homepage = "https://github.com/moosemagnet/deliciouspubsub"
   spec.license = { type: 'MIT', file: 'LICENSE' }
