@@ -19,7 +19,7 @@ Use `pub(message: Any)`.
 There's another public function, `dispatchMessages()`, which will be explained later...
 
 When a PubSub object is deinitialized, all of it's handlers are removed.
-This releases references to the closures and any enclosed
+This releases references to the closures.
 
 ## Usage
 
@@ -189,7 +189,7 @@ You can use GCD in your handlers if you have long-running or latent operations e
 
 You'll notice there is an overload for each function to add a subscriber with a `type: T.Type` param.
 
-It's is there purely for stylistic purposes. With Swift's type inference it's entirely unnecessary in every case, but everyone has their opinion about what does/n't look nice, so, uhh... do whatever you want.
+It is there purely for stylistic purposes. With Swift's type inference it's entirely unnecessary in every case, but everyone has their opinion about what does/n't look nice, so, uhh... do whatever you want.
 
 ```swift
 let pubSub = PubSub()
