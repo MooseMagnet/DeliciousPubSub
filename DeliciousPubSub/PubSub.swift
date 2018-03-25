@@ -29,7 +29,7 @@ open class PubSub {
     // MARK: Sub.
     //
     
-    open func sub<T: Any>(_ fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func sub<T: Any>(_ fn: @escaping (T) -> Void) -> () -> Void {
         let typeName = String(describing: T.self)
         if (handlers[typeName] == nil) {
             handlers[typeName] = ArrayReference<Handler>(array: [])
@@ -52,11 +52,11 @@ open class PubSub {
         }
     }
     
-    open func sub<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func sub<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> () -> Void {
         return sub(fn)
     }
     
-    open func sub<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func sub<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> () -> Void {
         let predicatedFn: (T) -> Void = {
             if predicate($0) {
                 fn($0)
@@ -65,7 +65,7 @@ open class PubSub {
         return sub(predicatedFn)
     }
     
-    open func sub<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func sub<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> () -> Void {
         return sub(predicate: predicate, fn: fn)
     }
     
@@ -75,8 +75,8 @@ open class PubSub {
     // MARK: Sub Once.
     //
     
-    open func subOnce<T: Any>(_ fn: @escaping (T) -> Void) -> (Void) -> Void {
-        var unsub: (Void) -> Void = {
+    open func subOnce<T: Any>(_ fn: @escaping (T) -> Void) -> () -> Void {
+        var unsub: () -> Void = {
             fatalError("unsub should be re-assigned to the unsub function.")
         }
         let unsubbingFn: (T) -> Void = {
@@ -87,12 +87,12 @@ open class PubSub {
         return unsub
     }
     
-    open func subOnce<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func subOnce<T: Any>(_ type: T.Type, fn: @escaping (T) -> Void) -> () -> Void {
         return subOnce(fn)
     }
     
-    open func subOnce<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
-        var unsub: (Void) -> Void = {
+    open func subOnce<T: Any>(predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> () -> Void {
+        var unsub: () -> Void = {
             fatalError("unsub should be re-assigned to the unsub function.")
         }
         let unsubbingFn: (T) -> Void = {
@@ -103,7 +103,7 @@ open class PubSub {
         return unsub
     }
     
-    open func subOnce<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> (Void) -> Void {
+    open func subOnce<T: Any>(_ type: T.Type, predicate: @escaping (T) -> Bool, fn: @escaping (T) -> Void) -> () -> Void {
         return subOnce(predicate: predicate, fn: fn)
     }
     
